@@ -1,0 +1,7 @@
+<h1><%= @group.title %></h1>
+
+<p><%= @group.body %></p>
+
+<%= link_to '編集', edit_group_path(@group) %>
+<%= link_to '削除', @group, method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<%= link_to '一覧へ戻る', groups_path %>
