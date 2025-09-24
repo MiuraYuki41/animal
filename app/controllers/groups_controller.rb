@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def create
@@ -28,11 +29,20 @@ class GroupsController < ApplicationController
   end
 
   def update
-
+    @group = Group.find(params[:id])
+    if @group.user_id == current_user.id && @group.update(group_params)
+      redirect_to group_path(@group.id) 
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+      group = Group.find(params[:id])
+      if @group.user_id == current_user.id
+        group.destroy 
+      end
+      redirect_to groups_path
   end
 
   private

@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   get 'about', to: 'homes#about'
 
-  resources :users, only: [:mypage, :show, :edit, :update, :destroy]
+  resources :users, only: [:mypage, :index, :show, :edit, :update, :destroy]
   resources :groups, only: [:new, :index, :show, :edit, :create, :update, :destroy]
 end
