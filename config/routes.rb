@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'about', to: 'homes#about'
+  
+  get 'mypage', to: "users#mypage"
+  resources :users
 
-  resources :users, only: [:mypage, :index, :show, :edit, :update, :destroy]
   resources :groups, only: [:new, :index, :show, :edit, :create, :update, :destroy]
 end

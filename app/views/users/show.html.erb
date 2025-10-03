@@ -1,1 +1,49 @@
-<div>show</div>
+<h1>グループ一覧</h1>
+
+<% if @user.groups.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>created_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.groups.each do |group| %>
+        <tr>
+          <td>
+            <%= link_to group_path(group.id) do %>
+              <%= group.title %>
+            <% end %>
+          </td>
+          <td><%= group.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h3>no-date</h3>
+<% end %>
+
+<h1>ユーザー情報</h1>
+<%= @user.inspect %>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>name</th>
+      <td><%= @user.name %></td>
+    </tr>    
+    <tr>
+      <th>body</th>
+      <td><%= simple_format @user.body %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to edit_user_path(@user.id) , class: "btn btn-outline-secondary btn-block" do %>
+  編集<i class = "fas fa-user-cog"></i>        
+<% end %><div>
+<%= link_to user_path(@user.id) , method: :delete, class: "btn btn-outline-secondary btn-block" do %>
+  退会<i class = "fas fa-user-cog"></i>        
+<% end %>
